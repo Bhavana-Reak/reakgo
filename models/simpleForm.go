@@ -44,3 +44,8 @@ func (form FormAddViewModel) View () ([]FormAddView, error) {
     }
     return resultSet, err
 }
+
+func (form FormAddViewModel) Delete(id int) (bool) {
+    utility.Db.MustExec("DELETE FROM simpleForm WHERE id = ?", id)
+    return true
+}

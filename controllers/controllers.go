@@ -16,6 +16,7 @@ type Env struct {
     formAddView interface {
         Add(name string, address string)
         View () ([]models.FormAddView, error)
+        Delete (id int) (bool)
     }
 }
 

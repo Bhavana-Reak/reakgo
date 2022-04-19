@@ -1,10 +1,11 @@
 package controllers
 
 import (
-    "net/http"
-    "log"
+	"log"
+	"net/http"
+	"strconv"
 
-    "reakgo/utility"
+	"reakgo/utility"
 )
 
 func AddForm(w http.ResponseWriter, r *http.Request){
@@ -26,6 +27,11 @@ func AddForm(w http.ResponseWriter, r *http.Request){
 
 
 func ViewForm(w http.ResponseWriter, r *http.Request){
+    if(r.FormValue("action") == "delete"){
+        id := r.FormValue("id")
+        intId, _ := strconv.Atoi(id)
+        Db.formAddView.Delete(intId)
+    }
     result, err := Db.formAddView.View()
     if (err != nil){
         log.Println(err)
